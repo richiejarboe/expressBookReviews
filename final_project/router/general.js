@@ -83,7 +83,7 @@ public_users.get('/review/:isbn',function (req, res) {
   return res.status(404).json({message: "Book not found"});
 });
 
-// Task 10: Get all books using async-await with Axios
+// Task 10: Retrieve all books using async-await with Axios
 public_users.get('/books', async function (req, res) {
   try {
     const response = await axios.get('http://localhost:5000/');
@@ -93,11 +93,11 @@ public_users.get('/books', async function (req, res) {
   }
 });
 
-// Task 11: Get book details by ISBN using Promise callbacks with Axios
+// Task 11: Retrieve a book by ISBN using a Promise with Axios
 public_users.get('/books/isbn/:isbn', function (req, res) {
   const isbn = req.params.isbn;
 
-  return axios.get(`http://localhost:5000/isbn/${isbn}`)
+  axios.get(`http://localhost:5000/isbn/${isbn}`)
     .then((response) => {
       return res.status(200).json(response.data);
     })
@@ -106,11 +106,11 @@ public_users.get('/books/isbn/:isbn', function (req, res) {
     });
 });
 
-// Task 12: Get book details by author using Promise callbacks with Axios
+// Task 12: Retrieve books by author using a Promise with Axios
 public_users.get('/books/author/:author', function (req, res) {
   const author = req.params.author;
 
-  return axios.get(`http://localhost:5000/author/${encodeURIComponent(author)}`)
+  axios.get(`http://localhost:5000/author/${encodeURIComponent(author)}`)
     .then((response) => {
       return res.status(200).json(response.data);
     })
@@ -119,11 +119,11 @@ public_users.get('/books/author/:author', function (req, res) {
     });
 });
 
-// Task 13: Get book details by title using Promise callbacks with Axios
+// Task 13: Retrieve books by title using a Promise with Axios
 public_users.get('/books/title/:title', function (req, res) {
   const title = req.params.title;
 
-  return axios.get(`http://localhost:5000/title/${encodeURIComponent(title)}`)
+  axios.get(`http://localhost:5000/title/${encodeURIComponent(title)}`)
     .then((response) => {
       return res.status(200).json(response.data);
     })
