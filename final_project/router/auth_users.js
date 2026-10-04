@@ -24,7 +24,7 @@ const authenticatedUser = (username,password)=>{ //returns boolean
 }
 
 //only registered users can login
-regd_users.post("/login", (req,res) => {
+const loginUser = (req,res) => {
   //Write your code here
   const username = req.body.username;
   const password = req.body.password;
@@ -44,11 +44,13 @@ regd_users.post("/login", (req,res) => {
       accessToken, username
     };
 
-    return res.status(200).json({message: "User successfully logged in"});
+    return res.status(200).json({message: "User successfully logged in."});
   }
 
   return res.status(208).json({message: "Invalid Login. Check username and password"});
-});
+};
+
+regd_users.post("/login", loginUser);
 
 // Add a book review
 regd_users.put("/auth/review/:isbn", (req, res) => {
@@ -68,7 +70,7 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
   books[isbn].reviews[username] = review;
 
   return res.status(200).json({
-    message: "Review successfully posted",
+    message: "Review added/updated successfully.",
     reviews: books[isbn].reviews
   });
 });
@@ -92,5 +94,6 @@ regd_users.delete("/auth/review/:isbn", (req, res) => {
 });
 
 module.exports.authenticated = regd_users;
+module.exports.login = loginUser;
 module.exports.isValid = isValid;
 module.exports.users = users;
